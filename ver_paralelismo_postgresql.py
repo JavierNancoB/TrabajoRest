@@ -8,7 +8,7 @@ conn_info_base = {
     'password': 'Fr9tL28mQxD7vKcp'
 }
 
-# Lista de posibles nombres de bases para probar
+# Lista de posibles nombres de bases para probar.
 posibles_bases = ['isekaidb', 'postgres', 'isekai', 'template1']
 
 def probar_conexion_y_listar_bases(dbname):
