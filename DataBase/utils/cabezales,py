@@ -1,0 +1,42 @@
+import psycopg2
+
+# Datos de conexión
+DB_NAME = "trabajo2paralela"
+USER = "postgres"
+PASSWORD = "postgres"
+HOST = "localhost"
+PORT = 5432
+
+TABLAS = ["species", "genders", "strata", "persons", "eldoria"]
+
+def imprimir_columnas_y_tipos():
+    try:
+        conn = psycopg2.connect(
+            dbname=DB_NAME,
+            user=USER,
+            password=PASSWORD,
+            host=HOST,
+            port=PORT
+        )
+        cur = conn.cursor()
+
+        for tabla in TABLAS:
+            print(f"\n📄 Estructura de tabla '{tabla}':")
+            cur.execute("""
+                SELECT column_name, data_type
+                FROM information_schema.columns
+                WHERE table_schema = 'public' AND table_name = %s
+                ORDER BY ordinal_position;
+            """, (tabla,))
+            columnas = cur.fetchall()
+
+            for nombre, tipo in columnas:
+                print(f"🔹 {nombre}: {tipo}")
+
+        cur.close()
+        conn.close()
+    except Exception as e:
+        print("💥 Error:", e)
+
+if __name__ == "__main__":
+    imprimir_columnas_y_tipos()
