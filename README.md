@@ -1,7 +1,7 @@
 # TrabajoRest - API de Otro Mundo
 
 <p align="center">
-  <img src="/Images/Logo_utem.jpg.png" alt="Swagger UI" height="200px" />
+  <img src="/Images/Logo_utem.jpg" alt="Utem Logo" height="200px" />
 </p>
 
 
