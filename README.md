@@ -88,7 +88,7 @@ pip install fastapi psycopg2 uvicorn python-dotenv
 
 ```bash
 git clone https://github.com/JavierNancoB/TrabajoRest
-cd TrabajoRest
+cd TrabajoRest/API
 ```
 
 2. Instalar dependencias:
