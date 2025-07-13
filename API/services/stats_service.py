@@ -10,9 +10,13 @@ paralelizadas para optimizar el rendimiento.
 
 from utils.db_utils import get_connection, PERSONS_TABLE
 from concurrent.futures import ThreadPoolExecutor
+import time
 
 # Cache para evitar consultas repetidas
 FK_CACHE = {}
+
+# Tiempo de vida del caché (en segundos)
+CACHE_TTL = 300
 
 # Mapeo de tablas a sus columnas de clave primaria
 FK_COLUMNS = {
@@ -25,7 +29,7 @@ def get_fk_from_code(conn, table: str, code: str) -> int:
     """
     Obtiene la clave primaria asociada a un código desde una tabla dada.
 
-    Usa una caché para evitar repetir consultas idénticas.
+    Usa una caché con tiempo de vida (TTL) para evitar repetir consultas idénticas.
 
     Args:
         conn: Conexión activa a la base de datos.
@@ -39,8 +43,15 @@ def get_fk_from_code(conn, table: str, code: str) -> int:
         ValueError: Si la tabla no es válida o el código no existe.
     """
     key = (table, code)
+    now = time.time()
+
     if key in FK_CACHE:
-        return FK_CACHE[key]
+        cached_time, cached_value = FK_CACHE[key]
+        if now - cached_time < CACHE_TTL:
+            return cached_value
+        else:
+            # Expiró el caché, eliminar entrada
+            del FK_CACHE[key]
 
     column = FK_COLUMNS.get(table)
     if not column:
@@ -51,7 +62,8 @@ def get_fk_from_code(conn, table: str, code: str) -> int:
         result = cur.fetchone()
         if not result:
             raise ValueError(f"No se encontró código '{code}' en {table}")
-        FK_CACHE[key] = result[0]
+
+        FK_CACHE[key] = (now, result[0])
         return result[0]
 
 def get_fks_parallel(conn, strata_code, species_code, gender_code):
