@@ -200,12 +200,3 @@ Sebastián Salazar Molina
 Este proyecto replica la API original especificada en [https://api.sebastian.cl/isekai/swagger-ui/index.html](https://api.sebastian.cl/isekai/swagger-ui/index.html), implementando los mismos endpoints, parámetros y respuestas.
 
 El proyecto se desarrolla para la asignatura Computación Paralela y Distribuida, utilizando paralelismo y buenas prácticas para mejorar la eficiencia.
-
----
-
-```
-
----
-
-Si quieres, te ayudo a dejarlo listo con links reales, agregar ejemplos de tests o la parte de despliegue. ¿Qué te parece?
-```
