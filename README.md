@@ -62,7 +62,7 @@ Fecha de entrega actualizada: 15 de julio de 2025
 ## Requisitos previos
 
 - Python 3.11.9  
-- PostgreSQL 16.9 (conexión remota al host 159.223.200.213 para el archivo de base de datos original)  
+- PostgreSQL 16.9 (conexión remota al host para el archivo de base de datos original)  
 - Dependencias listadas en `requirements.txt` o instalables con:
 
 ```bash

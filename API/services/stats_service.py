@@ -1,5 +1,5 @@
 from utils.db_utils import get_connection
-from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 
 # Cache para evitar consultas repetidas
 FK_CACHE = {}
@@ -27,11 +27,21 @@ def get_fk_from_code(conn, table: str, code: str) -> int:
         FK_CACHE[key] = result[0]
         return result[0]
 
+def get_fks_parallel(conn, strata_code, species_code, gender_code):
+    with ThreadPoolExecutor() as executor:
+        future_strata = executor.submit(get_fk_from_code, conn, "strata", strata_code)
+        future_species = executor.submit(get_fk_from_code, conn, "species", species_code)
+        future_gender = executor.submit(get_fk_from_code, conn, "genders", gender_code)
+
+        strata_fk = future_strata.result()
+        species_fk = future_species.result()
+        gender_fk = future_gender.result()
+
+    return strata_fk, species_fk, gender_fk
+
 def count_and_percentage_by_codes(strata_code: str, species_code: str, gender_code: str) -> dict:
     with get_connection() as conn:
-        strata_fk = get_fk_from_code(conn, "strata", strata_code)
-        species_fk = get_fk_from_code(conn, "species", species_code)
-        gender_fk = get_fk_from_code(conn, "genders", gender_code)
+        strata_fk, species_fk, gender_fk = get_fks_parallel(conn, strata_code, species_code, gender_code)
 
         query = """
         SELECT 
@@ -48,9 +58,7 @@ def count_and_percentage_by_codes(strata_code: str, species_code: str, gender_co
 
 def age_stats_by_codes(strata_code: str, species_code: str, gender_code: str) -> dict:
     with get_connection() as conn:
-        strata_fk = get_fk_from_code(conn, "strata", strata_code)
-        species_fk = get_fk_from_code(conn, "species", species_code)
-        gender_fk = get_fk_from_code(conn, "genders", gender_code)
+        strata_fk, species_fk, gender_fk = get_fks_parallel(conn, strata_code, species_code, gender_code)
 
         query = """
         SELECT
@@ -80,4 +88,3 @@ def age_stats_by_codes(strata_code: str, species_code: str, gender_code: str) ->
             "avg_age": round(float(avg_age), 2),
             "count": count
         }
-    
