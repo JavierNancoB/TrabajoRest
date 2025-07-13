@@ -118,13 +118,15 @@ La API correrá en [http://localhost:8000](http://localhost:8000) (o la IP/puert
 ## Documentación de la API
 
 Al momento de estar ejecutando la API, la documentación interactiva está disponible en el siguiente enlace:
-[http://localhost:8000/docs](http://localhost:8000/docs)
+[http://localhost:8000/docs](http://localhost:8000/docs).
+
+En la Siguiente imagnese puede visualizar lo que verá el usuario cuando entre al enlace. Aqui se pueden probar todas los [ENDPOINTS](https://www.icm.es/2021/06/15/que-son-endpoints/) configurados.
 
 <p align="center">
   <img src="/Images/API.png" alt="Swagger UI" height="400px" />
 </p>
 
----
+Los ENDPOINTS se dividen en dos grupos principales. Primero esta el desplegable de la información base y despues el desplegable de Estadisticas.
 
 ## Ejemplos de peticiones
 
