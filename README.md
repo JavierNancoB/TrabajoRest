@@ -4,7 +4,6 @@
   <img src="/Images/Logo_utem.jpg" alt="Utem Logo" height="200px" />
 </p>
 
-
 Trabajo Número 2 de Computación Paralela 1-2025  
 Profesor: Sebastián Salazar Molina  
 Entrega: 15 de julio de 2025
@@ -114,6 +113,10 @@ El archivo `.env` contiene variables para la conexión a la base de datos Postgr
 
 La API correrá en [http://localhost:8000](http://localhost:8000) (o la IP/puerto configurados).
 
+<p align="left">
+  <img src="/Images/Diagrama.png" alt="Diagrama" height="300px" />
+</p>
+
 ## Paralelismo y optimización
 
 Para mejorar la eficiencia de las consultas a la base de datos PostgreSQL, se implementó paralelismo en la obtención de claves foráneas (FK) necesarias para los filtros de los endpoints de estadísticas, especificamente en el servicio de estadisticas de la API, se encuentras aquí [stats_service.py](./API/services/stats_service.py).
@@ -125,6 +128,22 @@ Esto permite realizar simultáneamente las consultas a las tablas `strata`, `spe
 El código clave para esta paralelización es la función `get_fks_parallel` que ejecuta en paralelo las consultas de FK, utilizando un cache (`FK_CACHE`) para evitar consultas repetidas y acelerar aún más la respuesta.
 
 Esta estrategia de paralelismo resulta especialmente beneficiosa cuando la API debe atender múltiples solicitudes concurrentes o cuando las consultas de FK tardan un tiempo considerable, logrando un servicio más eficiente y rápido para el usuario.
+
+## Resultados Esperados
+
+Al completar la configuración y ejecutar el servidor, el usuario podrá consultar los datos definidos en la base de datos mediante endpoints claros y eficientes, con tiempos de respuesta optimizados gracias al paralelismo y uso de caché implementados.
+
+En condiciones ideales, con una base de datos cargada con aproximadamente 100 millones de filas, se espera que:
+
+El endpoint de estadísticas de conteo (/count) responda en menos de 20 segundos.
+
+El endpoint de estadísticas de edad (/age-stats) lo haga en menos de 40 segundos.
+
+Estas cifras representan los objetivos de rendimiento del sistema en escenarios de alta carga.
+
+> **Nota:** Actualmente, la base de datos utilizada no contiene la cantidad total de registros requerida (100 millones), por lo que no es posible realizar una evaluación empírica completa de dichos tiempos de respuesta. Sin embargo, la arquitectura propuesta y las técnicas aplicadas están diseñadas para escalar adecuadamente bajo dichas condiciones.
+
+Se espera que este enfoque facilite el consumo de datos por aplicaciones cliente, manteniendo una arquitectura escalable, modular y eficiente, apta para extenderse o adaptarse a escenarios de producción reales.
 
 ## Documentación de la API
 
