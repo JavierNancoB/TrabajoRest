@@ -1,15 +1,15 @@
 # TrabajoRest - API de Otro Mundo
 
-aqui insertar el logo de la utem
+<p>
+  ![Logo UTEM](./Images/Logo_utem.jpg)
+</p>
 
 Trabajo Número 2 de Computación Paralela 1-2025  
 Profesor: Sebastián Salazar Molina  
 Entrega: 15 de julio de 2025
 
-**Estudiante 1:** Aranza Sue Diaz
-
-**Estudiante 2:** Javier Nanco Becerra
-
+**Estudiante 1:** Javier Nanco Becerra  
+**Estudiante 2:** Aranza Sue Diaz  
 **Estudiante 3:** Ignacio Baeza Villaroel
 
 ---
@@ -30,21 +30,21 @@ Permite consultar:
 
 ## Tecnologías usadas
 
-aquí mejor dejarlo como una tabla donde cada wea te lleva al repositorio original, sea dependencia, version y repositorio ademas su explicaicon
+| Tecnología        | Versión    | Descripción                                 | Repositorio / Web                              |
+|-------------------|------------|---------------------------------------------|-----------------------------------------------|
+| Python            | 3.11.9     | Lenguaje de programación                     | [python.org](https://www.python.org/)         |
+| FastAPI           | 0.116.1    | Framework para APIs web                       | [fastapi.tiangolo.com](https://fastapi.tiangolo.com/) |
+| psycopg2          | 2.9.10     | Driver PostgreSQL para Python                 | [psycopg.org](https://www.psycopg.org/)       |
+| uvicorn           | 0.35.0     | Servidor ASGI para correr FastAPI             | [www.uvicorn.org](https://www.uvicorn.org/)   |
+| python-dotenv     | 1.1.1      | Manejo de variables de entorno                 | [pypi.org/project/python-dotenv/](https://pypi.org/project/python-dotenv/) |
+| PostgreSQL        | 16.9       | Sistema gestor de base de datos relacional    | [postgresql.org](https://www.postgresql.org/) |
 
-- **Python 3.11.9**  
-- **FastAPI 0.116.1**  
-- **psycopg2 2.9.10** (PostgreSQL driver)  
-- **uvicorn 0.35.0** (Servidor ASGI)  
-- **python-dotenv 1.1.1** (Manejo de variables de entorno)  
-- **Base de datos:** PostgreSQL 16.9
+Herramientas para desarrollo y prueba:
 
-Herramientas usadas para desarrollo y prueba: 
-
-lo mismo hayq ue añadirle aqui
-
-- pgAdmin  
-- DBeaver
+| Herramienta       | Descripción                     | Web                                           |
+|-------------------|---------------------------------|-----------------------------------------------|
+| pgAdmin           | Gestión visual de bases de datos | [pgadmin.org](https://www.pgadmin.org/)       |
+| DBeaver           | Cliente universal para DB         | [dbeaver.io](https://dbeaver.io/)              |
 
 ---
 
@@ -52,8 +52,7 @@ lo mismo hayq ue añadirle aqui
 
 Proyecto realizado como trabajo académico para la asignatura Computación Paralela y Distribuida.  
 
-Fecha de la Última Actualización 13-0 7-2025
-
+Fecha de la Última Actualización: 13-07-2025  
 Fecha de entrega original: 13 de julio de 2025  
 Fecha de entrega actualizada: 15 de julio de 2025
 
@@ -61,19 +60,13 @@ Fecha de entrega actualizada: 15 de julio de 2025
 
 ## Requisitos previos
 
-aqui cambiamos a especificar el uso del postgres solo cuando se corre el antiguo archivo de db hubicado en snippets
-
 - Python 3.11.9  
-- PostgreSQL 16.9 (conexión remota al host 159.223.200.213)  
+- PostgreSQL 16.9 (conexión remota al host 159.223.200.213 para el archivo de base de datos original)  
 - Dependencias listadas en `requirements.txt` o instalables con:
 
 ```bash
 pip install fastapi psycopg2 uvicorn python-dotenv
-````
-
----
-
-## Instalación
+```
 
 1. Clonar el repositorio:
 
@@ -123,9 +116,12 @@ La API correrá en [http://localhost:8000](http://localhost:8000) (o la IP/puert
 
 ## Documentación de la API
 
-Al momento de estar ejecutando la api documentación interactiva está disponible en el siguiente [URL de tu navegador](http://localhost:8000/docs)
+Al momento de estar ejecutando la API, la documentación interactiva está disponible en el siguiente enlace:
+[http://localhost:8000/docs](http://localhost:8000/docs)
 
-![Swagger UI](/Images/API.png)
+<p align="center">
+  <img src="/Images/API.png" alt="Swagger UI" height="400px" />
+</p>
 
 ---
 
@@ -173,18 +169,6 @@ Ejemplos de respuestas de error:
 
 ---
 
-## Testing
-
-(Agregar instrucciones para correr tests, si los tienes)
-
----
-
-## Despliegue
-
-(Agregar instrucciones si aplica para desplegar en un servidor)
-
----
-
 ## Contribución
 
 - Realizar pull requests contra la rama `main` o `develop` (según convenga)
@@ -195,15 +179,15 @@ Ejemplos de respuestas de error:
 
 ## Licencia
 
-(Incluir tipo de licencia, ej. MIT, GPL, etc.)
+[Ver licencia](./LICENSE)
 
 ---
 
 ## Contacto / Soporte
 
 Para dudas o soporte, contactar a:
-Sebastián Salazar Molina
-[email@universidad.cl](mailto:email@universidad.cl) (poner email real)
+Javier Alonso Nanco Becerra
+[jnanco@utem.cl](mailto:jnanco@utem.cl)
 
 ---
 
