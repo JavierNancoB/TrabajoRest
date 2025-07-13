@@ -89,13 +89,14 @@ cp API/ejemplo.env .env
 # Edita .env con los datos de conexión a tu base de datos PostgreSQL
 ```
 
-4. Correr el servidor localmente(para hacer esto se debe estar en la carpeta [API](./API/)):
+4. Correr el servidor localmente (modo desarrollo)
+
+> **Nota:** Este comando es para desarrollo local. Usa `--reload` para que el servidor se reinicie automáticamente al detectar cambios en el código. No se recomienda para producción.
 
 ```bash
+cd API
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 ```
-
----
 
 ## Configuración
 
