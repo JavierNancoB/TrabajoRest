@@ -1,8 +1,9 @@
 # TrabajoRest - API de Otro Mundo
 
-<p>
-  ![Logo UTEM](./Images/Logo_utem.jpg)
+<p align="center">
+  <img src="/Images/Logo_utem.jpg.png" alt="Swagger UI" height="200px" />
 </p>
+
 
 Trabajo Número 2 de Computación Paralela 1-2025  
 Profesor: Sebastián Salazar Molina  
