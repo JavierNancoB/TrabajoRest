@@ -1,6 +1,6 @@
 # TrabajoRest - API de Otro Mundo
 
-<p align="center">
+<p align="left">
   <img src="/Images/Logo_utem.jpg" alt="Utem Logo" height="200px" />
 </p>
 
