@@ -114,7 +114,7 @@ El archivo `.env` contiene variables para la conexión a la base de datos Postgr
 La API correrá en [http://localhost:8000](http://localhost:8000) (o la IP/puerto configurados).
 
 <p align="left">
-  <img src="/Images/Diagrama.png" alt="Diagrama" height="600px" />
+  <img src="/Images/Diagrama.png" alt="Diagrama" height="750px" />
 </p>
 
 ## Paralelismo y optimización
