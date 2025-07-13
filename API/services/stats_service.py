@@ -62,29 +62,31 @@ def age_stats_by_codes(strata_code: str, species_code: str, gender_code: str) ->
 
         query = """
         SELECT
-            MIN(EXTRACT(YEAR FROM AGE(birthdate))) AS min_age,
-            MAX(EXTRACT(YEAR FROM AGE(birthdate))) AS max_age,
-            AVG(EXTRACT(YEAR FROM AGE(birthdate))) AS avg_age,
-            COUNT(*) AS count
+            MIN(EXTRACT(epoch FROM (CURRENT_DATE - birthdate)) / 86400 / 365.25) AS min_age,
+            MAX(EXTRACT(epoch FROM (CURRENT_DATE - birthdate)) / 86400 / 365.25) AS max_age,
+            AVG(EXTRACT(epoch FROM (CURRENT_DATE - birthdate)) / 86400 / 365.25) AS avg_age,
+            STDDEV(EXTRACT(epoch FROM (CURRENT_DATE - birthdate)) / 86400 / 365.25) AS stddev_age
         FROM isekai.persons
         WHERE strata_fk = %s AND species_fk = %s AND gender_fk = %s;
         """
+
         with conn.cursor() as cur:
             cur.execute(query, (strata_fk, species_fk, gender_fk))
             result = cur.fetchone()
 
-        if not result or result[-1] == 0:  # No hay personas
+        if not result or result[3] is None:  # No hay personas o stddev null
             return {
                 "min_age": None,
                 "max_age": None,
                 "avg_age": None,
-                "count": 0
+                "stddev_age": None
             }
 
-        min_age, max_age, avg_age, count = result
+        min_age, max_age, avg_age, stddev_age = result
         return {
-            "min_age": int(min_age),
-            "max_age": int(max_age),
-            "avg_age": round(float(avg_age), 2),
-            "count": count
+            "min_age": round(min_age, 2),
+            "max_age": round(max_age, 2),
+            "avg_age": round(avg_age, 2),
+            "stddev_age": round(stddev_age, 2) if stddev_age is not None else None
         }
+

@@ -14,10 +14,10 @@ class CountPercentageResponse(BaseModel):
     percentage: float
 
 class AgeStatsResponse(BaseModel):
-    min_age: int
-    max_age: int
+    min_age: float
+    max_age: float
     avg_age: float
-    count: int
+    stddev_age: float
 
 
 @router.get(
@@ -136,8 +136,8 @@ def count_persons_with_filters(
 )
 def age_stats(
         species_code: str = Query(..., description="Código de especie", example="HU"),
-        strata_code: str = Query(..., description="Código de estrato", example="0"),
-        gender_code: str = Query(..., description="Código de género", example="F"),
+        strata_code: str = Query(..., description="Código de estrato", example="5"),
+        gender_code: str = Query(..., description="Código de género", example="M"),
     ):
     """
     Retorna el valor mínimo, máximo y promedio de edad para los filtros dados.
