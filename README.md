@@ -1,8 +1,16 @@
 # TrabajoRest - API de Otro Mundo
 
+aqui insertar el logo de la utem
+
 Trabajo Número 2 de Computación Paralela 1-2025  
 Profesor: Sebastián Salazar Molina  
 Entrega: 15 de julio de 2025
+
+**Estudiante 1:** Aranza Sue Diaz
+
+**Estudiante 2:** Javier Nanco Becerra
+
+**Estudiante 3:** Ignacio Baeza Villaroel
 
 ---
 
@@ -22,6 +30,8 @@ Permite consultar:
 
 ## Tecnologías usadas
 
+aquí mejor dejarlo como una tabla donde cada wea te lleva al repositorio original, sea dependencia, version y repositorio ademas su explicaicon
+
 - **Python 3.11.9**  
 - **FastAPI 0.116.1**  
 - **psycopg2 2.9.10** (PostgreSQL driver)  
@@ -29,7 +39,9 @@ Permite consultar:
 - **python-dotenv 1.1.1** (Manejo de variables de entorno)  
 - **Base de datos:** PostgreSQL 16.9
 
-Herramientas usadas para desarrollo y prueba:  
+Herramientas usadas para desarrollo y prueba: 
+
+lo mismo hayq ue añadirle aqui
 
 - pgAdmin  
 - DBeaver
@@ -40,12 +52,16 @@ Herramientas usadas para desarrollo y prueba:
 
 Proyecto realizado como trabajo académico para la asignatura Computación Paralela y Distribuida.  
 
+Fecha de la Última Actualización 13-0 7-2025
+
 Fecha de entrega original: 13 de julio de 2025  
 Fecha de entrega actualizada: 15 de julio de 2025
 
 ---
 
 ## Requisitos previos
+
+aqui cambiamos a especificar el uso del postgres solo cuando se corre el antiguo archivo de db hubicado en snippets
 
 - Python 3.11.9  
 - PostgreSQL 16.9 (conexión remota al host 159.223.200.213)  
@@ -62,7 +78,7 @@ pip install fastapi psycopg2 uvicorn python-dotenv
 1. Clonar el repositorio:
 
 ```bash
-git clone <url-del-repo>
+git clone https://github.com/JavierNancoB/TrabajoRest
 cd TrabajoRest
 ```
 
@@ -91,11 +107,11 @@ uvicorn main:app --host 0.0.0.0 --port 8000 --reload
 
 El archivo `.env` contiene variables para la conexión a la base de datos PostgreSQL:
 
-* Host
-* Puerto
-* Usuario
-* Contraseña
-* Nombre de la base de datos
+- Host
+- Puerto
+- Usuario
+- Contraseña
+- Nombre de la base de datos
 
 ---
 
@@ -107,11 +123,7 @@ La API correrá en [http://localhost:8000](http://localhost:8000) (o la IP/puert
 
 ## Documentación de la API
 
-La documentación interactiva está disponible en:
-
-```
-http://localhost:8000/docs
-```
+Al momento de estar ejecutando la api documentación interactiva está disponible en el siguiente [URL de tu navegador](http://localhost:8000/docs)
 
 ![Swagger UI](/Images/API.png)
 
@@ -137,7 +149,7 @@ Actualmente, la API no implementa ningún mecanismo de autenticación.
 
 Ejemplos de respuestas de error:
 
-* Código 404 (No encontrado):
+- Código 404 (No encontrado):
 
 ```json
 {
@@ -145,7 +157,7 @@ Ejemplos de respuestas de error:
 }
 ```
 
-* Código 422 (Error de validación):
+- Código 422 (Error de validación):
 
 ```json
 {
@@ -175,9 +187,9 @@ Ejemplos de respuestas de error:
 
 ## Contribución
 
-* Realizar pull requests contra la rama `main` o `develop` (según convenga)
-* Mantener formato y estilo PEP8 para Python
-* Documentar cualquier cambio relevante
+- Realizar pull requests contra la rama `main` o `develop` (según convenga)
+- Mantener formato y estilo PEP8 para Python
+- Documentar cualquier cambio relevante
 
 ---
 
