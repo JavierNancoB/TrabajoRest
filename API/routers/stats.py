@@ -1,3 +1,13 @@
+"""
+router/stats.py
+
+Router que expone endpoints estadísticos sobre los personajes del mundo isekai.
+
+Incluye operaciones para calcular:
+- Conteo y porcentaje de personajes que cumplen ciertos filtros
+- Estadísticas de edad como mínimo, máximo, promedio y desviación estándar
+"""
+
 from fastapi import APIRouter, Query, HTTPException
 from services.stats_service import count_and_percentage_by_codes, age_stats_by_codes
 from responses.standard_responses import standard_500
@@ -10,10 +20,12 @@ router = APIRouter(
 )
 
 class CountPercentageResponse(BaseModel):
+    """Modelo de respuesta para el conteo y porcentaje filtrado."""
     count: int
     percentage: float
 
 class AgeStatsResponse(BaseModel):
+    """Modelo de respuesta para estadísticas de edad."""
     min_age: float
     max_age: float
     avg_age: float
@@ -22,7 +34,7 @@ class AgeStatsResponse(BaseModel):
 
 @router.get(
     "/count", 
-    summary="Obtener estadisticas de conteo",
+    summary="Obtener estadísticas de conteo",
     response_model=CountPercentageResponse,
     responses={
         200: {
@@ -66,14 +78,25 @@ class AgeStatsResponse(BaseModel):
         500: standard_500,
     }
 )
-
 def count_persons_with_filters(
-        species_code: str = Query(..., description="Código de especie", example="HU"),
-        strata_code: str = Query(..., description="Código de estrato", example="0"),
-        gender_code: str = Query(..., description="Código de género", example="F"),
-    ):
+    species_code: str = Query(..., description="Código de especie", example="HU"),
+    strata_code: str = Query(..., description="Código de estrato", example="0"),
+    gender_code: str = Query(..., description="Código de género", example="F"),
+):
     """
-    Retorna la cantidad y porcentaje de individuos para los filtros dados.
+    Retorna el número de personajes y el porcentaje respecto al total,
+    según los filtros de especie, estrato y género.
+
+    Args:
+        species_code (str): Código de la especie (e.g., 'HU').
+        strata_code (str): Código del estrato social (e.g., '0').
+        gender_code (str): Código del género (e.g., 'F').
+
+    Returns:
+        dict: Diccionario con `count` (int) y `percentage` (float).
+
+    Raises:
+        HTTPException: Si alguno de los códigos no existe (404).
     """
     try:
         result = count_and_percentage_by_codes(
@@ -95,11 +118,11 @@ def count_persons_with_filters(
             "description": "Respuesta exitosa",
             "content": {
                 "application/json": {
-                    "example": {
-                        "min_age": 0,
-                        "max_age": 120,
-                        "avg_age": 59.76,
-                        "count": 8946
+                    "example": {   
+                        "min_age": 0.03,
+                        "max_age": 90.01,
+                        "avg_age": 45.24,
+                        "stddev_age": 26.15
                     }
                 }
             }
@@ -135,12 +158,24 @@ def count_persons_with_filters(
     }
 )
 def age_stats(
-        species_code: str = Query(..., description="Código de especie", example="HU"),
-        strata_code: str = Query(..., description="Código de estrato", example="5"),
-        gender_code: str = Query(..., description="Código de género", example="M"),
-    ):
+    species_code: str = Query(..., description="Código de especie", example="HU"),
+    strata_code: str = Query(..., description="Código de estrato", example="5"),
+    gender_code: str = Query(..., description="Código de género", example="M"),
+):
     """
-    Retorna el valor mínimo, máximo y promedio de edad para los filtros dados.
+    Retorna estadísticas de edad (mínima, máxima, promedio y desviación estándar)
+    para los personajes que cumplen con los filtros.
+
+    Args:
+        species_code (str): Código de especie (e.g., 'HU').
+        strata_code (str): Código de estrato (e.g., '5').
+        gender_code (str): Código de género (e.g., 'M').
+
+    Returns:
+        dict: Diccionario con `min_age`, `max_age`, `avg_age`, `stddev_age`.
+
+    Raises:
+        HTTPException: Si alguno de los códigos no existe (404).
     """
     try:
         result = age_stats_by_codes(

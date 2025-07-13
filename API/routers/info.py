@@ -1,3 +1,12 @@
+"""
+router/info.py
+
+Router que expone endpoints para obtener información base desde el mundo isekai,
+como los estratos sociales, especies y géneros disponibles.
+
+Estos datos se usan como filtros en endpoints estadísticos y son estáticos en la base de datos.
+"""
+
 from fastapi import APIRouter
 from typing import List
 from models.schemas import InfoItem
@@ -9,22 +18,7 @@ router = APIRouter(
     tags=["Información base"]
 )
 
-# Ejemplos reutilizables por endpoint
-
-# {
-#     "code": "0",
-#     "name": "Nobleza Suprema"
-# }
-# {
-#     "code": "HU",
-#     "name": "Humana."
-# }
-# {
-#     "code": "M",
-#     "name": "Masculino"
-# }
-# Estos ejemplos se usan para documentar las respuestas de los endpoints
-
+# Ejemplos para documentación Swagger
 strata_example = [{"code": "0", "name": "Nobleza Suprema"}]
 species_example = [{"code": "HU", "name": "Humana."}]
 genders_example = [{"code": "M", "name": "Masculino"}]
@@ -40,7 +34,14 @@ genders_example = [{"code": "M", "name": "Masculino"}]
     }
 )
 def get_strata():
+    """
+    Retorna la lista de estratos sociales definidos en el mundo isekai.
+
+    Returns:
+        List[InfoItem]: Lista de objetos con código y nombre del estrato.
+    """
     return fetch_table_data("isekai", "strata")
+
 
 @router.get(
     "/species",
@@ -53,7 +54,14 @@ def get_strata():
     }
 )
 def get_species():
+    """
+    Retorna la lista de especies disponibles en la base de datos.
+
+    Returns:
+        List[InfoItem]: Lista de objetos con código y nombre de cada especie.
+    """
     return fetch_table_data("isekai", "species")
+
 
 @router.get(
     "/genders",
@@ -66,4 +74,10 @@ def get_species():
     }
 )
 def get_genders():
+    """
+    Retorna la lista de géneros registrados en el sistema.
+
+    Returns:
+        List[InfoItem]: Lista de objetos con código y nombre del género.
+    """
     return fetch_table_data("isekai", "genders")
