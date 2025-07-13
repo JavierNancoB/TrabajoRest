@@ -1,4 +1,5 @@
 from utils.db_utils import get_connection
+from datetime import datetime
 
 # Cache para evitar consultas repetidas
 FK_CACHE = {}
@@ -44,3 +45,39 @@ def count_and_percentage_by_codes(strata_code: str, species_code: str, gender_co
 
     percentage = round(filtered_count / total_count, 6) if total_count > 0 else 0.0
     return {"count": filtered_count, "percentage": percentage}
+
+def age_stats_by_codes(strata_code: str, species_code: str, gender_code: str) -> dict:
+    with get_connection() as conn:
+        strata_fk = get_fk_from_code(conn, "strata", strata_code)
+        species_fk = get_fk_from_code(conn, "species", species_code)
+        gender_fk = get_fk_from_code(conn, "genders", gender_code)
+
+        query = """
+        SELECT
+            MIN(EXTRACT(YEAR FROM AGE(birthdate))) AS min_age,
+            MAX(EXTRACT(YEAR FROM AGE(birthdate))) AS max_age,
+            AVG(EXTRACT(YEAR FROM AGE(birthdate))) AS avg_age,
+            COUNT(*) AS count
+        FROM isekai.persons
+        WHERE strata_fk = %s AND species_fk = %s AND gender_fk = %s;
+        """
+        with conn.cursor() as cur:
+            cur.execute(query, (strata_fk, species_fk, gender_fk))
+            result = cur.fetchone()
+
+        if not result or result[-1] == 0:  # No hay personas
+            return {
+                "min_age": None,
+                "max_age": None,
+                "avg_age": None,
+                "count": 0
+            }
+
+        min_age, max_age, avg_age, count = result
+        return {
+            "min_age": int(min_age),
+            "max_age": int(max_age),
+            "avg_age": round(float(avg_age), 2),
+            "count": count
+        }
+    

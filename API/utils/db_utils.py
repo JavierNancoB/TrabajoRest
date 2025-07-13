@@ -1,17 +1,20 @@
 # db_utils.py
 import psycopg2
 from psycopg2 import OperationalError
+from dotenv import load_dotenv
+import os
 
-# 🔒 Conexión global compartida
+# Carga las variables de entorno desde el .env
+load_dotenv()
+
 CONN_INFO = {
-    'host': '159.223.200.213',
-    'port': 5432,
-    'user': 'isekai',
-    'password': 'Fr9tL28mQxD7vKcp',
-    'dbname': 'isekaidb'
+    'host': os.getenv('DB_HOST'),
+    'port': int(os.getenv('DB_PORT', 5432)),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'dbname': os.getenv('DB_NAME')
 }
 
-# Variable global de conexión (se crea cuando se llama `get_connection()`)
 conexion = None
 
 def get_connection():
