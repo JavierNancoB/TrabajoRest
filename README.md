@@ -1,10 +1,3 @@
-Perfecto, con toda esa info puedo ayudarte a pulir y estructurar un README más claro y profesional para tu API, basado en lo que ya tienes y el contexto del trabajo.
-
-Aquí te dejo una versión mejor organizada en Markdown, con secciones claras, un poco de formato, y que se ve profesional para entregar:
-
----
-
-````markdown
 # TrabajoRest - API de Otro Mundo
 
 Trabajo Número 2 de Computación Paralela 1-2025  
@@ -18,6 +11,7 @@ Entrega: 15 de julio de 2025
 API REST que replica la especificación del endpoint [https://api.sebastian.cl/isekai/swagger-ui/index.html](https://api.sebastian.cl/isekai/swagger-ui/index.html).  
 
 Permite consultar:  
+
 - Estratos sociales disponibles  
 - Especies disponibles  
 - Géneros disponibles  
@@ -36,6 +30,7 @@ Permite consultar:
 - **Base de datos:** PostgreSQL 16.9
 
 Herramientas usadas para desarrollo y prueba:  
+
 - pgAdmin  
 - DBeaver
 
