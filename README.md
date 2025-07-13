@@ -89,7 +89,7 @@ cp API/ejemplo.env .env
 # Edita .env con los datos de conexión a tu base de datos PostgreSQL
 ```
 
-4. Correr el servidor localmente:
+4. Correr el servidor localmente(para hacer esto se debe estar en la carpeta [API](./API/)):
 
 ```bash
 uvicorn main:app --host 0.0.0.0 --port 8000 --reload
@@ -113,7 +113,17 @@ El archivo `.env` contiene variables para la conexión a la base de datos Postgr
 
 La API correrá en [http://localhost:8000](http://localhost:8000) (o la IP/puerto configurados).
 
----
+## Paralelismo y optimización
+
+Para mejorar la eficiencia de las consultas a la base de datos PostgreSQL, se implementó paralelismo en la obtención de claves foráneas (FK) necesarias para los filtros de los endpoints de estadísticas, especificamente en el servicio de estadisticas de la API, se encuentras aquí [stats_service.py](./API/services/stats_service.py).
+
+En particular, en los endpoints que retornan estadísticas de conteo y edad, se utiliza `concurrent.futures.ThreadPoolExecutor` para paralelizar las consultas que buscan los valores de clave primaria asociados a los códigos de estrato (`strata_code`), especie (`species_code`) y género (`gender_code`).
+
+Esto permite realizar simultáneamente las consultas a las tablas `strata`, `species` y `genders`, reduciendo el tiempo de espera total y mejorando el rendimiento global de la API.
+
+El código clave para esta paralelización es la función `get_fks_parallel` que ejecuta en paralelo las consultas de FK, utilizando un cache (`FK_CACHE`) para evitar consultas repetidas y acelerar aún más la respuesta.
+
+Esta estrategia de paralelismo resulta especialmente beneficiosa cuando la API debe atender múltiples solicitudes concurrentes o cuando las consultas de FK tardan un tiempo considerable, logrando un servicio más eficiente y rápido para el usuario.
 
 ## Documentación de la API
 
