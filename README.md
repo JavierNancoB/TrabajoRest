@@ -48,6 +48,20 @@ Herramientas para desarrollo y prueba:
 | pgAdmin           | Gestión visual de bases de datos | [pgadmin.org](https://www.pgadmin.org/)       |
 | DBeaver           | Cliente universal para DB         | [dbeaver.io](https://dbeaver.io/)              |
 
+## Entorno de Pruebas
+
+Sistema Operativo: Ubuntu 24.04.2 LTS (Linux 6.8.0-1029-raspi aarch64)
+
+CPU: ARM Cortex-A53, 4 núcleos, 1.4 GHz máximo
+
+Memoria RAM: 899 MiB total (234 MiB usada, 247 MiB libre, 665 MiB disponible)
+
+Swap: No configurado
+
+Almacenamiento: 57 GB total, 2.8 GB usados, 53 GB libres (partición principal /)
+
+> **Nota:** No se utilizó una maquina virtual
+
 ---
 
 ## Estado del proyecto
