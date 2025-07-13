@@ -12,6 +12,8 @@ Entrega: 15 de julio de 2025
 **Estudiante 2:** Aranza Sue Diaz  
 **Estudiante 3:** Ignacio Baeza Villaroel
 
+El informe del trabajo se encuentra en el siguiente [enlace](./Doc/Informe%20Un%20API%20de%20otro%20mundo.docx)
+
 ---
 
 ## Descripción
